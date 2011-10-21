@@ -6,7 +6,9 @@
 
 (defun handler (httpcon)
   "Demonstration function"
-  (elnode-http-start httpcon "200" '("Content-type" . "text/html"))
+  (elnode-http-start httpcon "200"
+                     '("Content-type" . "text/html")
+                     `("Server" . ,(concat "GNU Emacs " emacs-version)))
   (elnode-http-return httpcon
                       "<html><body><h1>what is this I don't even</h1></body></html>"))
 
@@ -14,3 +16,4 @@
 
 (while t
   (accept-process-output nil 1))
+
