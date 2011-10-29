@@ -1,5 +1,7 @@
 # Commodore Night Vision
 
-Because it's possible. Not because it's a good idea.
+Because
+[it's possible](https://github.com/technomancy/heroku-buildpack-emacs).
+Not because it's a good idea.
 
-![Commodore Night Vision](http://m.assetbar.com/uuafSWx5l.gif)
+Background on [the name](http://m.assetbar.com/uuafSWx5l.gif).
