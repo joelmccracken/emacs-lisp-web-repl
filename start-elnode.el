@@ -1,9 +1,8 @@
 ;; -*- lexical-binding: t -*-
-(add-to-list
- 'package-archives
- '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-(message "marmalade added")
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("marmalade" . "http://marmalade-repo.org/packages/")))
+(message "package archives configured added")
 
 (package-initialize)
 (message "packages initialized")
