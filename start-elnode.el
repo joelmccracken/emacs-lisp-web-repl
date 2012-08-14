@@ -2,15 +2,24 @@
 (add-to-list
  'package-archives
  '("marmalade" . "http://marmalade-repo.org/packages/"))
+
+(message "marmalade added")
+
 (package-initialize)
+(message "packages initialized")
+
 (package-refresh-contents)
+(message "packages refreshed")
+
 (setq
  elnode-init-port
  (string-to-number (or (getenv "PORT") "8080")))
 (setq elnode-init-host "0.0.0.0")
 (setq elnode-do-init nil)
+(message "elnode init done")
+
 (package-install 'elnode)
-(require 'elnode)
+(message "elnode installed")
 
 (defun handler (httpcon)
   "Demonstration function"
