@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t -*-
-(add-to-list package-archives "http://marmalade-repo.org/packages/")
+(add-to-list
+ 'package-archives
+ '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 (package-refresh-contents)
 (setq
