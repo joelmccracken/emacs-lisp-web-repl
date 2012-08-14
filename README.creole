@@ -1,0 +1,50 @@
+A demo of how to code an Elnode app for deployment on Heroku.
+
+== Making this work on Heroku ==
+
+* first register on [[http://heroku.com|heroku]] using the website
+* install the heroku gem
+
+{{{
+$ gem install heroku
+}}}
+
+** you need at least version 2.11.0+
+* authenticate on the command line
+
+{{{
+$ heroku auth:login
+email: 
+password
+}}}
+
+* upload your ssh keys
+
+{{{
+$ heroku keys:add
+}}}
+
+* cd to this repo (or your own version of it)
+* create the heroku app and register it as a git remote using the elnode buildpack
+
+{{{
+$ heroku create --stack cedar --buildpack http://github.com/nicferrier/heroku-buildpack-emacs.git
+}}}
+    
+* and finally deploy the app by pushing to heroku:
+
+{{{
+$ git push heroku master
+-----> Heroku receiving push
+-----> Fetching custom buildpack
+-----> Emacs Lisp app detected
+-----> Downloading Emacs 24.0.50.1
+       Downloading Emacs 24 pretest from github
+       ...done
+}}}
+
+Now go to Heroku, check //your apps// and you should be able to find a
+weblink to your app.  
+
+Heroku has all sorts of options for scaling and performance and
+database hosting. Could be an interesting platform for Elnode.
