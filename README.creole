@@ -24,6 +24,9 @@ password
 $ heroku keys:add
 }}}
 
+
+== Making the app ==
+
 * cd to this repo (or your own version of it)
 * create the heroku app and register it as a git remote using the elnode buildpack
 
