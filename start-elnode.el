@@ -44,6 +44,7 @@
 (elnode-start 'handler :port elnode-init-port :host elnode-init-host)
 
 ;;(elnode-init)
-(while t (accept-process-output nil 1))
+;;(while t (accept-process-output nil 1))
+
 
 ;; End
