@@ -44,7 +44,10 @@
 (elnode-start 'handler :port elnode-init-port :host elnode-init-host)
 
 ;;(elnode-init)
-;;(while t (accept-process-output nil 1))
+
+;; from what I can tell, the following line is required on heroku to
+;; keep the emacs process live. I think?
+(while t (accept-process-output nil 1))
 
 
 ;; End
