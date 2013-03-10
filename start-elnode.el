@@ -25,13 +25,24 @@
   (elnode-http-start httpcon "200"
                      '("Content-type" . "text/html")
                      `("Server" . ,(concat "GNU Emacs " emacs-version)))
-  (elnode-http-return httpcon
-                      "<html><body><h1>Hello from EEEMACS.</h1></body></html>"))
+  (elnode-http-return
+   httpcon
+   (format "<html><body><h1>You said: '%s'</h1>%s</body></html>"
+           (cdr (assoc "echo_me" (elnode-http-params httpcon)))
+           (echo-form)
+           )))
+
+
+(defun echo-form ()
+  "
+<form method=\"POST\">
+  <input type=\"text\" name=\"echo_me\">
+  <input type=\"submit\" value=\"Say me!\" name=\"submit\">
+</form>
+")
 
 (elnode-start 'handler :port elnode-init-port :host elnode-init-host)
 ;;(elnode-init)
-
-(while t
-  (accept-process-output nil 1))
+;; (while t (accept-process-output nil 1))
 
 ;; End
