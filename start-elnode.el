@@ -27,7 +27,7 @@
                      `("Server" . ,(concat "GNU Emacs " emacs-version)))
   (elnode-http-return
    httpcon
-   (format "<html><body><h1>You said: '%s'</h1>%s</body></html>"
+   (format "<html><body><h1>You said: '%s'</h1>%s %s</body></html>"
            (cdr (assoc "echo_me" (elnode-http-params httpcon)))
            (echo-form)
            )))
