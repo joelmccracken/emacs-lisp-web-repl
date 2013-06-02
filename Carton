@@ -1,0 +1,2 @@
+(source "marmalade" "http://marmalade-repo.org/packages/")
+(depends-on "elnode")

@@ -1,0 +1,17 @@
+* Emacs Web REPL
+
+A web-based Emacs lisp repl -- because we can! =-D
+
+really just
+
+* Heroku
+
+Application is deployed on heroku; currently at:
+
+    infinite-beyond-9049.herokuapp.com
+
+
+
+* things
+** TODO finish figuring out carton / elpa
+

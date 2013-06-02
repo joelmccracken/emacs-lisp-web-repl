@@ -1,24 +1,18 @@
 ;; -*- lexical-binding: t -*-
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
-(message "package archives configured added")
 
+(dolist (package (file-expand-wildcards "elpa/*" t))
+  (add-to-list 'load-path package))
 (package-initialize)
 (message "packages initialized")
 
-(package-refresh-contents)
-(message "packages refreshed")
 
 (setq
  elnode-init-port
  (string-to-number (or (getenv "PORT") "8080")))
 (setq elnode-init-host "0.0.0.0")
 (setq elnode-do-init nil)
-(message "elnode init done")
 
-(package-install 'elnode)
-(message "elnode installed")
+(require 'elnode)
 
 (defun handler (httpcon)
   "Demonstration function"
@@ -33,7 +27,6 @@
            (echo-form)
            )))
 
-
 (defun echo-form ()
   "
 <form method=\"POST\">
@@ -42,13 +35,15 @@
 </form>
 ")
 
-(elnode-start 'handler :port elnode-init-port :host elnode-init-host)
+(defun heroku-start ()
+  (elnode-init)
+  (elnode-start 'handler :port elnode-init-port :host elnode-init-host)
+  ;; from what I can tell, the following line is required on heroku to
+  ;; keep the emacs process live. I think?
+  (while t (accept-process-output nil 1)))
 
-;;(elnode-init)
-
-;; from what I can tell, the following line is required on heroku to
-;; keep the emacs process live. I think?
-(while t (accept-process-output nil 1))
-
+(defun development-start ()
+  (elnode-init)
+  (elnode-start 'handler :port elnode-init-port :host elnode-init-host))
 
 ;; End
