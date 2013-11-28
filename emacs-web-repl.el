@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 
-
+(message "HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 (add-to-list 'load-path (expand-file-name "~/.cask/"))
 (require 'cask)
 
