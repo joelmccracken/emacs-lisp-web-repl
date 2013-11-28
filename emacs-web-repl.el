@@ -151,7 +151,7 @@ $(function(){
   ;; keep the emacs process live. I think?
   (message "about to start infinite loop")
 
-;;  (while t (accept-process-output nil 1))
+  (while t (accept-process-output nil 1))
   )
 
 (defun development-start ()
