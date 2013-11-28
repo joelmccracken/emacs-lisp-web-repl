@@ -1,34 +1,30 @@
 ;; -*- lexical-binding: t -*-
 
-
-(defun log (str)
-  (with-temp-buffer
-    (insert (format "%S \n" str))
-    (append-to-file nil nil "emacs-web-repl.log")))
-
-
-(log "after log function definition")
+(message "after message function definition")
 (add-to-list 'load-path (expand-file-name "./cask-library"))
 (require 'cask)
-(log "required cask")
-(log "starting cask initialize")
+(message "required cask")
+(message "starting cask initialize")
 (cask-initialize "./")
-(log "dolist")
+(message "dolist")
 
+
+(message "cask elpa dir is %S" (cask-elpa-dir))
+(message "directory files is %S" (directory-files (cask-elpa-dir)))
 
 (dolist (dir (directory-files (cask-elpa-dir)))
   (add-to-list 'load-path dir))
 
 (setq elnode-do-init nil)
 
-(log "after cask initialize")
+(message "after cask initialize")
 
 (require 'elnode)
 (require 'xmlgen "xml-gen")
 (require 'elisp-sandbox)
 
 
-(log "required app dependencies")
+(message "required app dependencies")
 
 (setq emacs-web-repl-routes
       '(
@@ -142,7 +138,7 @@ $(function(){
 (setq heroku-elnode-init-host "0.0.0.0")
 
 (defun heroku-start ()
-  (log "top of heroku-start")
+  (message "top of heroku-start")
   (elnode-init)
   (elnode-start 'root-handler :port heroku-elnode-init-port :host heroku-elnode-init-host)
   ;; from what I can tell, the following line is required on heroku to
