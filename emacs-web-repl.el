@@ -8,9 +8,6 @@
 (cask-initialize "./")
 (message "dolist")
 
-
-
-
 (let ((emacs-version "24.3.1"))
   (message "cask elpa dir is %S" (cask-elpa-dir))
   (message "directory files is %S" (directory-files (cask-elpa-dir)))
@@ -140,10 +137,12 @@ $(function(){
 
 
 
-(setq heroku-elnode-init-port "80")
+(setq heroku-elnode-init-port
+      (string-to-number (or (getenv "PORT") "8080")))
 (setq heroku-elnode-init-host "0.0.0.0")
 
 (defun heroku-start ()
+  (interactive)
   (message "top of heroku-start")
   (elnode-init)
   (message "about to elnode-start")
