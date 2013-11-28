@@ -18,9 +18,14 @@
 
 (setq elnode-do-init nil)
 
+
+
 (require 'elnode)
 (require 'xmlgen "xml-gen")
 (require 'elisp-sandbox)
+
+
+(log "required app dependencies")
 
 (setq emacs-web-repl-routes
       '(
@@ -134,6 +139,7 @@ $(function(){
 (setq heroku-elnode-init-host "0.0.0.0")
 
 (defun heroku-start ()
+  (log "top of heroku-start")
   (elnode-init)
   (elnode-start 'root-handler :port heroku-elnode-init-port :host heroku-elnode-init-host)
   ;; from what I can tell, the following line is required on heroku to
