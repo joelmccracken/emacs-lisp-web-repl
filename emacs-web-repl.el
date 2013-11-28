@@ -9,11 +9,14 @@
 (message "dolist")
 
 
-(message "cask elpa dir is %S" (cask-elpa-dir))
-(message "directory files is %S" (directory-files (cask-elpa-dir)))
 
-(dolist (dir (directory-files (cask-elpa-dir)))
-  (add-to-list 'load-path dir))
+
+(let ((emacs-version "24.3.1"))
+  (message "cask elpa dir is %S" (cask-elpa-dir))
+  (message "directory files is %S" (directory-files (cask-elpa-dir)))
+
+  (dolist (dir (directory-files (cask-elpa-dir)))
+    (add-to-list 'load-path dir)))
 
 (setq elnode-do-init nil)
 
