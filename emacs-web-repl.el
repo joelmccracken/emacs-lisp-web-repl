@@ -6,8 +6,9 @@
     (insert (format "%S \n" str))
     (append-to-file nil nil "emacs-web-repl.log")))
 
-(log "after log definition")
-(add-to-list 'load-path (expand-file-name "~/.cask/"))
+
+(log "after log function definition")
+(add-to-list 'load-path (expand-file-name "./cask-library"))
 (require 'cask)
 (log "required cask")
 
