@@ -146,9 +146,11 @@ $(function(){
 (defun heroku-start ()
   (message "top of heroku-start")
   (elnode-init)
+  (message "about to elnode-start")
   (elnode-start 'root-handler :port heroku-elnode-init-port :host heroku-elnode-init-host)
   ;; from what I can tell, the following line is required on heroku to
   ;; keep the emacs process live. I think?
+  (message "about to start infinite loop")
   (while t (accept-process-output nil 1)))
 
 (defun development-start ()
