@@ -14,7 +14,9 @@
 (log "starting cask initialize")
 (cask-initialize "./")
 (log "dolist")
-(dolist (dir (f-directories (cask-elpa-dir)))
+
+
+(dolist (dir (directory-files (cask-elpa-dir)))
   (add-to-list 'load-path dir))
 
 (setq elnode-do-init nil)
