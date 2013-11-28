@@ -16,7 +16,7 @@
   (message "directory files is %S" (directory-files (cask-elpa-dir)))
 
   (dolist (dir (directory-files (cask-elpa-dir)))
-    (add-to-list 'load-path dir)))
+    (add-to-list 'load-path (concat (cask-elpa-dir) "/" dir))))
 
 (setq elnode-do-init nil)
 
