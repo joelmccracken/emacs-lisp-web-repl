@@ -1,9 +1,15 @@
 ;; -*- lexical-binding: t -*-
 
 
-(message "HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+(defun log (str)
+  (with-temp-buffer
+    (insert (format "%S \n" str))
+    (append-to-file nil nil "emacs-web-repl.log")))
+
+(log "after log definition")
 (add-to-list 'load-path (expand-file-name "~/.cask/"))
 (require 'cask)
+(log "required cask")
 
 (cask-initialize "./")
 (dolist (dir (f-directories (cask-elpa-dir)))
