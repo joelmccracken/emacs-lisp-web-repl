@@ -11,14 +11,14 @@
 (add-to-list 'load-path (expand-file-name "./cask-library"))
 (require 'cask)
 (log "required cask")
-
+(log "starting cask initialize")
 (cask-initialize "./")
 (dolist (dir (f-directories (cask-elpa-dir)))
   (add-to-list 'load-path dir))
 
 (setq elnode-do-init nil)
 
-
+(log "after cask initialize")
 
 (require 'elnode)
 (require 'xmlgen "xml-gen")
