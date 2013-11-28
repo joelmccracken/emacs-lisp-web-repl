@@ -23,9 +23,11 @@
 (message "after cask initialize")
 
 (require 'elnode)
+(message "required elnode")
 (require 'xmlgen "xml-gen")
+(message "required xmlgen")
 (require 'elisp-sandbox)
-
+(message "required sandbox")
 
 (message "required app dependencies")
 
