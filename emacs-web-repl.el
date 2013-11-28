@@ -22,6 +22,7 @@
 
 (message "after cask initialize")
 
+(message "requiring elnode")
 (require 'elnode)
 (message "required elnode")
 (require 'xmlgen "xml-gen")
