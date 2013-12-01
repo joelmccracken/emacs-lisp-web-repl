@@ -1,33 +1,18 @@
 ;; -*- lexical-binding: t -*-
 
-(message "after message function definition")
 (add-to-list 'load-path (expand-file-name "./cask-library"))
 (require 'cask)
-(message "required cask")
-(message "starting cask initialize")
 (cask-initialize "./")
-(message "dolist")
 
 (let ((emacs-version "24.3.1"))
-  (message "cask elpa dir is %S" (cask-elpa-dir))
-  (message "directory files is %S" (directory-files (cask-elpa-dir)))
-
   (dolist (dir (directory-files (cask-elpa-dir)))
     (add-to-list 'load-path (concat (cask-elpa-dir) "/" dir))))
 
 (setq elnode-do-init nil)
 
-(message "after cask initialize")
-
-(message "requiring elnode")
 (require 'elnode)
-(message "required elnode")
 (require 'xmlgen "xml-gen")
-(message "required xmlgen")
 (require 'elisp-sandbox)
-(message "required sandbox")
-
-(message "required app dependencies")
 
 (setq emacs-web-repl-routes
       '(
@@ -72,9 +57,7 @@
                        ,(echo-form))
                       )))
            (eval-stylesheet)
-           (eval-javascript)
-
-           )))
+           (eval-javascript))))
 
 
 
@@ -151,8 +134,7 @@ $(function(){
   ;; keep the emacs process live. I think?
   (message "about to start infinite loop")
 
-  (while t (accept-process-output nil 1))
-  )
+  (while t (accept-process-output nil 1)))
 
 (defun development-start ()
   (interactive)
