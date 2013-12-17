@@ -8,7 +8,10 @@
   (dolist (dir (directory-files (cask-elpa-dir)))
     (add-to-list 'load-path (concat (cask-elpa-dir) "/" dir))))
 
+;; disable the default elnode services
 (setq elnode-do-init nil)
+(setq elnode-init-port nil)
+
 
 (require 'elnode)
 (require 'xmlgen "xml-gen")
@@ -46,41 +49,100 @@
    httpcon
    (format (xmlgen `(html
                      (head
-                      ;; (script :src "http://ace.c9.io/build/src-min-noconflict/ace.js" "")
-                      (script :src "http://code.jquery.com/jquery-1.10.1.min.js" "")
                       (style "%s")
-                      (script "%s")
+
                       (body
-                       (h1 "Emacs Lisp Evaluator")
-                       (div :class "evaluation-results"
-                            "")
-                       ,(echo-form))
-                      )))
+                       (div :class "body"
+                            (h1 "Emacs Lisp")
+                            (h2 "Interactive REPL")
+
+                            (div :class "evaluation-results" "")
+                            ,(echo-form))
+
+                       ;; (script :src "http://ace.c9.io/build/src-min-noconflict/ace.js" "")
+                       (script :src "http://code.jquery.com/jquery-1.10.1.min.js" "")
+                       (script "%s")
+                       ))))
            (eval-stylesheet)
            (eval-javascript))))
-
-
-
 
 (defun eval-stylesheet ()
   "
 * {
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
+  color: #D2D6FF;
+  font-family: sans-serif;
 }
+
+body {
+  background-color: #FFF5D2;
+}
+
+div.body {
+  padding: 2em;
+  background-color: #8186B2;
+  width: 50%;
+  min-width: 500px;
+  margin: auto;
+}
+
+
+
+h1 {
+  color: #D2D6FF;
+  font-size: 2em;
+}
+
+h2 {
+  color: #D2D6FF;
+  font-style: italic;
+  font-size: 1em;
+}
+
 .evaluation-results {
-  border: black solid 1px;
+  border: #B2A46F solid 3px;
   padding: 1em;
-  width: 300px;
+  width: 100%;
   height: 200px;
 }
 
-textarea.elisp-entry {
-  width: 300px;
-  height: 50px;
+form {
+  height: 100%;
+  width: 100%;
 }
 
-"
-  )
+label {
+  margin-top: 2em;
+  display: block;
+  margin-bottom: 1em;
+}
+
+textarea.elisp-entry {
+  float: left;
+  height: 65px;
+  width: 70%;
+  display: inline-block;
+  padding: 4px;
+  background-color: #EBEDFF;
+  border: #B2A46F solid 3px;
+  color: #8186B2;
+}
+
+input.evaluate {
+  float: right;
+  display: inline-block;
+  height: 65px;
+  width: 25%;
+  padding: 0px;
+  margin-top: 1px;
+  background-color: #EBEDFF;
+  border: #B2A46F solid 3px;
+  color: #8186B2;
+  font-size: 1em;
+}
+
+")
 
 
 
@@ -89,11 +151,10 @@ textarea.elisp-entry {
 
 (defun echo-form ()
   '(form :method "POST"
-         (label :for "elisp" "Lisp to Evaluate:")
-         (br)
-         (textarea :class "elisp-entry" :name "elisp" "")
-         (br)
-         (input :type "button" :value "Evaluate" :name "submit" :class "evaluate")))
+         (div :class "elisp-entry-wrapper"
+              (label :for "elisp" "Lisp to Evaluate:")
+              (textarea :class "elisp-entry" :name "elisp" "")
+              (input :type "button" :value "Run!" :name "submit" :class "evaluate"))))
 
 (defun eval-javascript ()
   "
@@ -121,7 +182,7 @@ $(function(){
 
 
 (setq heroku-elnode-init-port
-      (string-to-number (or (getenv "PORT") "8080")))
+      (string-to-number (or (getenv "PORT") "8000")))
 (setq heroku-elnode-init-host "0.0.0.0")
 
 (defun heroku-start ()
@@ -140,7 +201,7 @@ $(function(){
   (interactive)
   (message "starting development server")
   (elnode-init)
-  (elnode-start 'root-handler)
+  (elnode-start 'root-handler :port "8000" :host "0.0.0.0")
   (load-development-settings))
 
 

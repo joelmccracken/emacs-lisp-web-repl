@@ -1,8 +1,12 @@
 * Emacs Web REPL
 
-A web-based Emacs lisp repl -- because we can! =-D
+A web-based Emacs lisp repl
 
-really just
+* development
+
+the script bash_src{start-development-server.sh} will start a
+development server.
+
 
 * Heroku
 
@@ -10,8 +14,4 @@ Application is deployed on heroku; currently at:
 
     infinite-beyond-9049.herokuapp.com
 
-
-
-* things
-** TODO finish figuring out carton / elpa
 
