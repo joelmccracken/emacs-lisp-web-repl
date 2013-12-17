@@ -105,10 +105,11 @@ h2 {
   padding: 1em;
   width: 100%;
   height: 200px;
+  overflow: scroll;
 }
 
 form {
-  height: 100%;
+  overflow: hidden;
   width: 100%;
 }
 
