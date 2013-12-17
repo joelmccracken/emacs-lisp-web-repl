@@ -1,0 +1,5 @@
+* take a break to work on the sandbox/including more advanced functionality
+** add '*' function
+** add better error handling / clarify api and who is responsible for what
+* at some point include ace editor http://ace.c9.io/
+* add a list of user-available functions
