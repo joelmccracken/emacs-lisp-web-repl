@@ -146,8 +146,6 @@ input.evaluate {
 
 
 
-(defun evaluate-submission (submission)
-  (elisp-sandbox-eval (read (or submission "nil"))))
 
 (defun echo-form ()
   '(form :method "POST"
@@ -179,6 +177,8 @@ $(function(){
 });
 ")
 
+(defun evaluate-submission (submission)
+  (elisp-sandbox-eval (read (or submission "nil"))))
 
 
 (setq heroku-elnode-init-port
